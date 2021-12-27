@@ -65,13 +65,13 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     video=sy(name_music,ytdl_client=ydl_opts)
     
     url_music = video['url']
-    url_thumbnail = video['thumbnails'][0]['url']
+    url_thumbnail = video['thumbnail']
     artist=video['artist']
     title=video['title']
     duration=video['duration']
     id_video=video['id']
     link_yt=f'youtube.com/watch?v={id_video}'
-    album=video['album']
+    album=video.get('album','Unknowm')
     track=video.get('track',None)
     year=video.get('upload_date',None)[:4]
     
@@ -84,11 +84,14 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     else:
         pass
     #editing the name from pathfilemusic
+    path_file = '_'.join(title.split(' '))
+    path_file = '_'.join(path_file.split('('))
+    path_file = '_'.join(path_file.split(')'))
     if path_music:
-        path_music = f'{path_dir}/{path_music}'
+        path_music = f'{path_dir}/{path_file}'
     else:
         path_music = '_'.join(title.split(' '))
-        path_music = f'{path_dir}/{path_music}'
+        path_music = f'{path_dir}/{path_file}'
     # making the download from music file
     ydl_opts = {
        'outtmpl': f'{path_music}.%(ext)s',
@@ -103,8 +106,7 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
        ydl.download([link_yt])
    
     path_music=f'{path_music}.mp3'
-    path_thumb = '_'.join(title.split(' '))
-    path_thumb = f'{path_dir}/{path_thumb}.jpg'
+    path_thumb = f'{path_dir}/{path_file}.png'
     thumb_content = rq.get(url_thumbnail).content
     with open(path_thumb,'wb') as file_thumb:
         file_thumb.write(thumb_content)

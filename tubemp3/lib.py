@@ -20,7 +20,8 @@ def search_ytdl(arg,ytdl_client=False):
             get(arg) 
         except:
             videos = ydl.extract_info(f"ytsearch:{arg}", download=False)['entries'][0]
-            #print(videos)
+            #videos = ydl.extract_info(arg, download=False)
+            print(videos)
         else:
             videos = ydl.extract_info(arg, download=False)
             
