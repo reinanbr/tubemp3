@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+psutil = "*"
+googlesearch-python = "*"
+youtube-dl = "*"
+mp3-tagger = "*"
+stagger = "*"
+eyed3 = "*"
+requests = "*"
+tqdm = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
