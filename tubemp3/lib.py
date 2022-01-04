@@ -3,7 +3,7 @@ from ast import Return
 import os
 from unittest import result
 import youtube_dl
-from googlesearch import search
+#from googlesearch import search # in now moment, we dont need form it....
 from requests import get
 
 ydlt = youtube_dl.YoutubeDL({'outtmpl': '%(id)s.%(ext)s'})
@@ -21,7 +21,7 @@ def search_ytdl(arg,ytdl_client=False):
         except:
             videos = ydl.extract_info(f"ytsearch:{arg}", download=False)['entries'][0]
             #videos = ydl.extract_info(arg, download=False)
-            print(videos)
+            #print(videos)
         else:
             videos = ydl.extract_info(arg, download=False)
             
@@ -43,48 +43,48 @@ def search_ytdl(arg,ytdl_client=False):
         video['album'] = videos.get('album',None)
         return video
 
-
-def search_gyt(q:str,pesq_size=100):
-   # ydl_opts =  {'ottmpl': 'music.%(ext)s','postprocessors': [{'key': 'FFmpegExtractAudio','preferredcodec': 'mp3','preferredquality': '192'}]} 
+## in now moment, we dont need from it function... ##
+# def search_gyt(q:str,pesq_size=100):
+#    # ydl_opts =  {'ottmpl': 'music.%(ext)s','postprocessors': [{'key': 'FFmpegExtractAudio','preferredcodec': 'mp3','preferredquality': '192'}]} 
     
     
     
-    search_q = f'music {q} site:youtube.com'
-    results_term = search(q,num_results=pesq_size)
-    results_term = [i for i in results_term if 'youtube' in i]
-    assert len(results_term)>0, 'not founded music from youtube'
-    results = []
-    s=0
-    for i in results_term:
-        result = ydlt.extract_info(i,download=False)
-        if 'entries' in result:
-            # Can be a playlist or a list of videos
-            video = result['entries'][0]
-        else:
-            # Just a video
-            video = result
-        #results.append(video)
-        title = video.get('title',None)
-        url = video.get('url',None)
-        duration = video.get('duration',None)
-        channel = video.get('channel',None)
-        url_thumb = video.get('thumbnail',None)
-        result={}
-        result['title']=title
-        result['duration']=duration
-        result['url']=url
-        result['thumbnail']=url_thumb
-        result['link_g']=i
-        result['q']=q
+#     search_q = f'music {q} site:youtube.com'
+#     results_term = search(q,num_results=pesq_size)
+#     results_term = [i for i in results_term if 'youtube' in i]
+#     assert len(results_term)>0, 'not founded music from youtube'
+#     results = []
+#     s=0
+#     for i in results_term:
+#         result = ydlt.extract_info(i,download=False)
+#         if 'entries' in result:
+#             # Can be a playlist or a list of videos
+#             video = result['entries'][0]
+#         else:
+#             # Just a video
+#             video = result
+#         #results.append(video)
+#         title = video.get('title',None)
+#         url = video.get('url',None)
+#         duration = video.get('duration',None)
+#         channel = video.get('channel',None)
+#         url_thumb = video.get('thumbnail',None)
+#         result={}
+#         result['title']=title
+#         result['duration']=duration
+#         result['url']=url
+#         result['thumbnail']=url_thumb
+#         result['link_g']=i
+#         result['q']=q
         
-        results.append(result)
-        #print(title,duration)
-        #print(video)
-        s+=1
-    #print(results_term)
+#         results.append(result)
+#         #print(title,duration)
+#         #print(video)
+#         s+=1
+#     #print(results_term)
     
-    #link_result = results_term[0]
-    return results
+#     #link_result = results_term[0]
+#     return results
 
 def download_yt(video,path_file:str='',path_dir:str='mp3',download=True):
     if os.path.isdir(path_dir):

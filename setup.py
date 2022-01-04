@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     readme = fh.read()
 
 setup(name='tubemp3',
-    version='0.0.1013',
+    version='0.0.1016',
     url='https://github.com/perseu912/tubemp3',
     license='MIT License',
     author='Reinan Br',
@@ -18,5 +18,5 @@ setup(name='tubemp3',
     keywords='kit tools dev works',
     description=u'Library for getting music in high quality from YouTube',
     packages=find_packages(),
-    install_requires=['psutil','requests','googlesearch-python',
+    install_requires=['requests',
     'youtube-dl','mp3-tagger','stagger','eyed3'],)

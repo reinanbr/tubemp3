@@ -66,7 +66,8 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     
     url_music = video['url']
     url_thumbnail = video['thumbnail']
-    artist=video['artist']
+    channel=video.get('channel','Unknown')
+    artist=video.get('artist',channel)
     title=video['title']
     duration=video['duration']
     id_video=video['id']
@@ -74,6 +75,8 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     album=video.get('album','Unknowm')
     track=video.get('track',None)
     year=video.get('upload_date',None)[:4]
+    
+    assert duration < 600, print(f'ops! Music dont permition size download: [Duration: {duration}s]')
     
     print(f'music: \ntitle:{title}\nduration:{duration}\nartist:{artist}\nid:{id_video}\nalbum:{album}\nyear:{year}')
     # getting the content music
@@ -87,6 +90,9 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     path_file = '_'.join(title.split(' '))
     path_file = '_'.join(path_file.split('('))
     path_file = '_'.join(path_file.split(')'))
+    path_file = '_'.join(path_file.split('&'))
+    path_file = '_'.join(path_file.split('"'))
+    path_file = '_'.join(path_file.split("'"))
     if path_music:
         path_music = f'{path_dir}/{path_file}'
     else:
