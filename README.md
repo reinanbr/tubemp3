@@ -11,7 +11,7 @@
 <a href='https://pypi.org/project/tubemp3/'><img src='https://img.shields.io/pypi/v/tubemp3'></a>
 <a href='#'><img src='https://img.shields.io/pypi/wheel/tubemp3'></a>
 <a href='#'><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/tubemp3"></a>
-<img alt="PyPI - License" src="https://img.shields.io/pypi/l/tubemp3">
+<img alt="PyPI - License" src="https://img.shields.io/pypi/l/tubemp3?color=orange">
 <br/>
 
 
@@ -74,12 +74,16 @@ Deleting original file music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_
 find  the file:
 ```sh
 $ ls music/
+```
+
+```sh
 Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3 
 ```
 play the file:
 ```sh
 $ play music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3
-
+```
+```sh
 music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3:
 
  File Size: 7.94M     Bit Rate: 258k
