@@ -49,7 +49,7 @@ import youtube_dl
 
 ##the show is start
 def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
-             pref_quality:int=256):
+             pref_quality:int=320):
     ydl_opts = {
        'outtmpl': f'{path_dir}/{path_music}.%(ext)s',
            'format': 'bestaudio/best',
@@ -78,7 +78,9 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     
     assert duration < 600, print(f'ops! Music dont permition size download: [Duration: {duration}s]')
     
-    print(f'music: \ntitle:{title}\nduration:{duration}\nartist:{artist}\nid:{id_video}\nalbum:{album}\nyear:{year}')
+    time_min = int(duration//60)
+    time_sec = int(duration%60)
+    print(f'music: \ntitle:{title}\nduration:{time_min}:{time_sec}\nartist:{artist}\nid:{id_video}\nalbum:{album}\nyear:{year}')
     # getting the content music
     
     #verification that the pastmusic exists
@@ -93,11 +95,18 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     path_file = '_'.join(path_file.split('&'))
     path_file = '_'.join(path_file.split('"'))
     path_file = '_'.join(path_file.split("'"))
+    path_file = '_'.join(path_file.split(':'))
+    path_file = '_'.join(path_file.split('/'))
+    path_file = '_'.join(path_file.split('-'))
+
     if path_music:
         path_music = f'{path_dir}/{path_file}'
+        print('if',path_music)
     else:
         path_music = '_'.join(title.split(' '))
         path_music = f'{path_dir}/{path_file}'
+        print('else',path_music)
+
     # making the download from music file
     ydl_opts = {
        'outtmpl': f'{path_music}.%(ext)s',

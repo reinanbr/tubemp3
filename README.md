@@ -1,4 +1,3 @@
-
 <h1 align='center'>TubeMp3</h1>
 <p align='center'>
 
@@ -33,12 +32,18 @@
 <hr/>
 
 ## Instalation
+
+
 ```sh
-sudo apt install ffmpeg -y
+sudo apt update && sudo apt upgrade -y
 ```
 
 ```sh
-$ pip3 install tubemp3 -U
+sudo apt install ffmpeg python3 python3-pip -y
+```
+
+```sh
+pip3 install tubemp3 -U
 ```
 
 ## Examples
