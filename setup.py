@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     readme = fh.read()
 
 setup(name='tubemp3',
-    version='0.2.3',
+    version='0.2.4',
     url='https://github.com/perseu912/tubemp3',
     license='MIT License',
     author='Reinan Br',

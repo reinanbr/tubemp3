@@ -90,14 +90,15 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
         pass
     #editing the name from pathfilemusic
     path_file = '_'.join(title.split(' '))
-    path_file = '_'.join(path_file.split('('))
-    path_file = '_'.join(path_file.split(')'))
-    path_file = '_'.join(path_file.split('&'))
-    path_file = '_'.join(path_file.split('"'))
-    path_file = '_'.join(path_file.split("'"))
-    path_file = '_'.join(path_file.split(':'))
-    path_file = '_'.join(path_file.split('/'))
-    path_file = '_'.join(path_file.split('-'))
+    path_file = ''.join(path_file.split('('))
+    path_file = ''.join(path_file.split(')'))
+    path_file = ''.join(path_file.split('&'))
+    path_file = ''.join(path_file.split('"'))
+    path_file = ''.join(path_file.split("'"))
+    path_file = ''.join(path_file.split(':'))
+    path_file = ''.join(path_file.split('/'))
+    path_file = ''.join(path_file.split('-'))
+    path_file = ''.join(path_file.split('|'))
 
     if path_music:
         path_music = f'{path_dir}/{path_file}'
