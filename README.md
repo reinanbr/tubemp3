@@ -39,7 +39,7 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 ```sh
-sudo apt install ffmpeg python3 python3-pip -y
+sudo apt install ffmpeg sox python3 python3-pip -y
 ```
 
 ```sh

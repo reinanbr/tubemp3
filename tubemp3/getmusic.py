@@ -86,7 +86,7 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
     #verification that the pastmusic exists
     if not os.path.isdir(path_dir):
         os.mkdir(path_dir)
-    else:
+        
         pass
     #editing the name from pathfilemusic
     path_file = '_'.join(title.split(' '))
