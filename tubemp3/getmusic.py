@@ -40,7 +40,7 @@ Author: Reinan Br slimchatuba@gmail.com
 
 from .lib import search_ytdl as sy
 #from __future__ import unicode_literals
-import stagger
+#import stagger
 import eyed3
 from eyed3.id3.frames import ImageFrame
 import requests as rq
@@ -128,15 +128,19 @@ def getmusic(name_music:str,path_dir:str='music',path_music:str=False,
         file_thumb.write(thumb_content)
     
     
-    mp3 = stagger.read_tag(path_music)
-    mp3.artist = artist
-    mp3.song = title
-    mp3.title = track
-    mp3.album=album
+ 
+   
     #mp3.picture = path_thumb
     mp3.write()
 
     audiofile = eyed3.load(path_music)
+    
+    mp3 = audiofile 
+    mp3.artist = artist
+    mp3.song = title
+    mp3.title = track
+    mp3.album = album
+    
     if (audiofile.tag == None):
         audiofile.initTag()
 
