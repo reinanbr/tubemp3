@@ -7,8 +7,10 @@ Reinan Br
 '''
 
 from tubemp3.getmusic import getmusic as gm
+from tubemp3 import get_from_link as gfl
 import sys
 
-name_music = sys.argv[1]
+#name_music = sys.argv[1]
+link_music = sys.argv[1]
 def main():
-   gm(name_music)
+   gfl(link_music).download_mp3()

@@ -1,6 +1,6 @@
 from tubemp3 import get_from_link as gfl
 
-tst = gfl(url='https://youtu.be/TLCyHgQOXtw')
+tst = gfl(url='https://youtu.be/BF5bV6oWXJg')
 
 # for typ in tst.types.keys():
 #     print('\n',10*'=+=')
@@ -10,6 +10,6 @@ tst = gfl(url='https://youtu.be/TLCyHgQOXtw')
 
 # tst.download()
 
-print(tst.formats)
+#print(tst.formats)
 
-tst.download_video()
+tst.download_mp3()

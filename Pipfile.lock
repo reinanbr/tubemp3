@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "76dea1ca1340db74626a6b7915ebeaf3b0b4682076712708ffe78229bfaa66d7"
+            "sha256": "36ccfd2fee51229cfd792bf2fb57c070f3870301923bd3f12bc59386e0360df2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -116,12 +116,19 @@
             "index": "pypi",
             "version": "==0.9.6"
         },
+        "ffmpeg": {
+            "hashes": [
+                "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"
+            ],
+            "index": "pypi",
+            "version": "==1.4"
+        },
         "filetype": {
             "hashes": [
-                "sha256:6a104762fe93d755c962aa96cb3d930a48f91a0761047126c5eead2153e33b03",
-                "sha256:8f5d2d5ae7fec00c71dadfe8a747c2d6da91d77f9b4e550bbdb0881f63a07e43"
+                "sha256:117e25a50988d1a03a32ed510f4a15353e7291e683e94c63930497dd2c66ce24",
+                "sha256:afe4a00029601f66d239b72688065cc7c219dec1c927994f90b825e9e53d8f93"
             ],
-            "version": "==1.0.13"
+            "version": "==1.1.0"
         },
         "googlesearch-python": {
             "hashes": [
@@ -191,6 +198,14 @@
             "index": "pypi",
             "version": "==5.9.1"
         },
+        "pydub": {
+            "hashes": [
+                "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6",
+                "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f"
+            ],
+            "index": "pypi",
+            "version": "==0.25.1"
+        },
         "pyparsing": {
             "hashes": [
                 "sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb",
@@ -239,11 +254,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:8298d6d56d39be0e3bc13c1c97d133f9b45d797169a0e11cdd0e0489d786f7ec",
-                "sha256:879ba4d1e89654d9769ce13121e0f94310ea32e8d2f8cf587b77c08bbcdb30d6"
+                "sha256:3fa96cf423e6987997fc326ae8df396db2a8b7c667747d47ddd8ecba91f4a74e",
+                "sha256:b930dd878d5a8afb066a637fbb35144fe7901e3b209d1cd4f524bd0e9deee997"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4'",
-            "version": "==1.26.10"
+            "version": "==1.26.12"
         },
         "youtube-dl": {
             "hashes": [

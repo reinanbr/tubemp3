@@ -12,6 +12,8 @@ stagger = "*"
 eyed3 = "*"
 requests = "*"
 tqdm = "*"
+pydub = "*"
+ffmpeg = "*"
 
 [dev-packages]
 
