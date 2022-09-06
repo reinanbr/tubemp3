@@ -8,7 +8,8 @@ from youtube_dl import YoutubeDL
 import re
 import os
 import time
-from pydub import AudioSegment as As
+import music_tag
+#from pydub import AudioSegment as As
 import eyed3
 from eyed3.id3.frames import ImageFrame
 
@@ -29,9 +30,9 @@ class get_from_link(object):
     def __init__(self,url:str) -> None:
         #print('oi')
         
-        token_video = url.split('/')[-1]
+        #token_video = url.split('/')[-1]
         
-        url = f'https://www.youtube.com/watch?v={token_video}'
+        #url = f'https://www.youtube.com/watch?v={token_video}'
         self.url_yt = url
         r = ydl.extract_info(url, download=False)
         self.extract_info(r)
@@ -60,6 +61,9 @@ class get_from_link(object):
             
         self.types = types
         self.formats = formats
+        
+        
+        
     
     def __download(self,url,format):
         #url = self.types['m4a']['url']
@@ -67,9 +71,9 @@ class get_from_link(object):
         res.raise_for_status()
         
         size = int(res.headers.get('content-length'))
-        size_mb = size/(1024**2)
+        bdiv=1024
+        size_mb = size/(bdiv**2)
         filename=f'{self.title}.{format}'
-        bdiv = 1024
         with open(filename,'bw') as file:
             b = 0
             init_time = time.time()
@@ -109,7 +113,7 @@ class get_from_link(object):
     def download_mp3(self):
       yt_m = YoutubeDL(ydl_opts_mp3)
       vd_data = yt_m.extract_info(self.url_yt,download=False)
-      exts_list = vd_data.get('ext')
+      print(yt_m)
       
       
       self.extract_info(vd_data)
@@ -180,6 +184,81 @@ class get_from_link(object):
       
       
       
-      #url_download = self.types['m4a']['url']
       
-      #self.__download(url_download,'m4a')
+    def download_m4a(self):
+        #url_m4a = self.types['m4a']['url']
+        
+        yt_m = YoutubeDL(ydl_opts_mp3)
+        print(yt_m)
+        vd_data = yt_m.extract_info(self.url_yt,download=False)
+        print(vd_data)
+        exts_list = vd_data.get('ext')
+        track = vd_data.get('track','Unknown')
+        channel = vd_data.get('channel',None)
+        artist = vd_data.get('artist',channel)
+        year_ = vd_data.get('year',"Unknown")
+        year = vd_data.get('upload_date',year_)[:4]
+        album = vd_data.get('album','Unknown')
+        duration = vd_data.get('duration')
+        id_video = vd_data.get('id')
+        title = vd_data.get('title')
+        thumb = vd_data.get('thumbnail')
+        
+        time_min = int(duration//60)
+        time_sec = int(duration%60)
+        time_sec = f'0{time_sec}' if len(str(time_sec)) == 1 else time_sec
+        
+        url_download = self.types['m4a']['url']
+
+        #self.__download(url_download,'m4a')
+        
+        f = music_tag.load_file(f'{self.title}.m4a')
+        
+        f['title'] = title
+        f['artist'] = artist
+        f['year'] = year
+        #f['track'] = track
+        #f['tracknumber'] = track
+        
+        thumb_path = f'{self.title}.png'
+        print(thumb)
+        thumb_content = rq.get(thumb).content
+        with open(thumb_path,'wb') as file:
+            file.write(thumb_content)
+        
+        with open(thumb_path,'rb') as img:
+            f['artwork'] = img.read()
+        with open(thumb_path,'rb') as img:
+            f.append('artwork', img.read())
+        f.save()
+    
+    def get_info_music(self):
+        
+        url_download = self.types['m4a']['url']
+        yt_m = YoutubeDL(ydl_opts_mp3)
+        print(yt_m)
+        vd_data = yt_m.extract_info(self.url_yt,download=False)
+        print(vd_data)
+        exts_list = vd_data.get('ext')
+        track = vd_data.get('track','Unknown')
+        channel = vd_data.get('channel',None)
+        artist = vd_data.get('artist',channel)
+        year_ = vd_data.get('year',"Unknown")
+        year = vd_data.get('upload_date',year_)[:4]
+        album = vd_data.get('album','Unknown')
+        duration = vd_data.get('duration')
+        id_video = vd_data.get('id')
+        title = vd_data.get('title')
+        thumb = vd_data.get('thumbnail')
+        
+        
+        dict_info = {"channel":channel,
+                     "track":track,
+                     "title":title,
+                     "artist":artist,
+                     "album":album,
+                     "year":year,
+                     "url_music":url_download,
+                     "thumb":thumb,
+                     "duration":duration}
+        return dict_info
