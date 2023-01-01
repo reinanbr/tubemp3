@@ -154,8 +154,7 @@ def music_from_link(link,path_dir='mp3',
     About:
     This work is for downloader music's from link present's 
     in the site Youtube only, the download is in mp3 (RECOMMENDED IS MP3) format.
-    Using this power, you can download music's as 'Jane',
-    from 'Desejo de Menina' or 'Kang the Conquerator - Theme'.
+    Using this power, you can download music's.
     ...
     Note:
       We too will config the tags from your music,

@@ -38,7 +38,7 @@ date_init: 27 dec 2021 03:18
 Author: Reinan Br slimchatuba@gmail.com
 '''
 
-from .lib import search_ytdl as sy
+from tubemp3.tools.lib import search_ytdl as sy
 #from __future__ import unicode_literals
 #import stagger
 import eyed3
