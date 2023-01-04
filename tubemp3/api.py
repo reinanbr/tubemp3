@@ -61,6 +61,14 @@ def extract_info(res_ytdl):
     
 
 #info music youtube from a url
-def info_url(url):
+def get_info_url(url):
     res = ydl.extract_info(url, download=False)
     return extract_info(res)
+
+
+def get_info_search(query:str,number_results:int=5)->list:
+    list_videos = []
+    videos = ydl.extract_info(f"ytsearch{number_results}:{query}", download=False)['entries']
+    for video in videos:
+        list_videos.append(extract_info(video))
+    return list_videos
