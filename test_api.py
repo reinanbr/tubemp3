@@ -1,4 +1,4 @@
-from tubemp3.trash.api import get_info_url,get_info_search
+from tubemp3.api import get_info_url,get_info_search
 
 
 # url='https://music.youtube.com/watch?v=B_HSa1dEL9s'

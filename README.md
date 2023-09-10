@@ -39,12 +39,13 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 ```sh
-sudo apt install ffmpeg sox python3 python3-pip -y
+sudo apt install ffmpeg python3 python3-pip -y
 ```
 
 ```sh
 pip3 install tubemp3 -U
 ```
+
 
 ## Examples:
 
@@ -198,54 +199,28 @@ response:
 with name:
 
 ```sh
-$ getmusic 'no time for caution' 
+$ getmusic 'https://music.youtube.com/watch?v=B_HSa1dEL9s' 'test.mp3'
 ```
 result:
 ```sh
-[download] Downloading playlist: no time for caution hq music
-[youtube:search] query "no time for caution hq music": Downloading page 1
-[youtube:search] playlist no time for caution hq music: Downloading 1 videos
-[download] Downloading video 1 of 1
-[youtube] rpWC9-VBjPM: Downloading webpage
-[youtube] Downloading just video rpWC9-VBjPM because of --no-playlist
-[youtube] rpWC9-VBjPM: Downloading player e06dea74
-[download] Finished downloading playlist: no time for caution hq music
-1
-music: 
-title:Hans Zimmer - No Time For Caution HQ (Interstellar)
-duration:247
-artist:Hans Zimmer
-id:rpWC9-VBjPM
-album:No Time for Caution
-year:2015
-WARNING: The url doesn't specify the protocol, trying with http
-[youtube] rpWC9-VBjPM: Downloading webpage
-[download] Destination: music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.webm
-[download] 100% of 3.97MiB in 01:32
-[ffmpeg] Destination: music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3
-Deleting original file music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.webm (pass -k to keep)
-```
-find  the file:
-```sh
-$ ls music/
-```
 
-```sh
-Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3 
-```
-play the file:
-```sh
-$ play music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3
-```
-```sh
-music/Hans_Zimmer_-_No_Time_For_Caution_HQ__Interstellar_.mp3:
+[youtube] B_HSa1dEL9s: Downloading webpage
+[youtube] B_HSa1dEL9s: Downloading webpage
+[youtube] Downloading just video B_HSa1dEL9s because of --no-playlist
+<youtube_dl.YoutubeDL.YoutubeDL object at 0x7f52f3b611c0>
+[music info] 
+title:For Whom The Bell Tolls (Remastered)
+duration:5:10
+artist:Metallica
+id:B_HSa1dEL9s
+album:Ride The Lightning (Remastered)
+year:2022
+[youtube] B_HSa1dEL9s: Downloading webpage
+[download] Destination: test.m4a
+[download] 100% of 4.79MiB in 01:06
+[ffmpeg] Correcting container in "test.m4a"
+[ffmpeg] Destination: test.mp3
+Deleting original file test.m4a (pass -k to keep)
+Non standard genre name: Unknown
 
- File Size: 7.94M     Bit Rate: 258k
-  Encoding: MPEG audio    
-  Channels: 2 @ 16-bit   
-Samplerate: 48000Hz      Album: No Time for Caution
-Replaygain: off         Artist: Hans Zimmer
-  Duration: 00:04:06.55  Title: No Time for Caution
-
-In:19.1% 00:00:47.10 [00:03:19.45] Out:2.26M [   ===|==-   ]        Clip:0    
 ```

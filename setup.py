@@ -1,12 +1,12 @@
 from setuptools import setup
 from setuptools import find_packages, setup
 
-with open("README.md", "r") as fh:
+with open("README.md",encoding="utf-8") as fh:
     readme = fh.read()
 
 setup(name='tubemp3',
-    version='0.2.15.2',
-    url='https://github.com/perseu912/tubemp3',
+    version='0.2.17',
+    url='https://github.com/reinanbr/tubemp3',
     license='MIT License',
     author='Reinan Br',
     entry_points = {
