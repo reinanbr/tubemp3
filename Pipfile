@@ -15,6 +15,7 @@ tqdm = "*"
 pydub = "*"
 ffmpeg = "*"
 music-tag = "*"
+setuptools = "*"
 
 [dev-packages]
 
