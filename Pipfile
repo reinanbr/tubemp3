@@ -4,20 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-psutil = "*"
-googlesearch-python = "*"
-youtube-dl = "*"
-mp3-tagger = "*"
-stagger = "*"
-eyed3 = "*"
+yt-dpl ="*" 
 requests = "*"
 tqdm = "*"
-pydub = "*"
-ffmpeg = "*"
-music-tag = "*"
 setuptools = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"

@@ -1,4 +1,1 @@
-
-from tubemp3.get import get_from_link
-
-all=[get_from_link]
+from tubemp3.api import search_music

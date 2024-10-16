@@ -1,74 +1,58 @@
-'''
-api code
-date init: dez 31 21:27 2022
-'''
-import requests as rq
-from youtube_dl import YoutubeDL
-import re
+import yt_dlp as youtube_dl
 
+def search_youtube(query, max_results=5):
+    ydl_opts = {
+        'quiet': True,  # Minimiza os logs
+        'extract_flat': True,  # Extrai apenas metadados, sem baixar o vídeo
+        'dump_single_json': True,  # Retorna resultados como JSON
+        'noplaylist': True,  # Não inclui playlists nos resultados
+        'default_search': 'ytsearch'  # Define que a busca deve ser feita no YouTube
+    }
 
-ydl_opts_mp3 = {
-       #'outtmpl': f'{path_dir}/{path_music}.%(ext)s',
-           'format': 'bestaudio/best',
-            'noplaylist':'True',
-      #     'postprocessors': [{
-      #         'key': 'FFmpegExtractAudio',
-      #         'preferredcodec': 'mp3',
-      #         'preferredquality': f'{pref_quality}',
-      # }],
-   }
-ydl = YoutubeDL()
-
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        try:
+            # Realiza a pesquisa e retorna os resultados
+            result = ydl.extract_info(f"ytsearch{max_results}:{query}", download=False)
+            return result
+        except Exception as e:
+            print(f"Erro ao realizar pesquisa no YouTube: {e}")
+            return None
 
 
 
-def extract_info(res_ytdl):
-    vd_data=res_ytdl
-    r = res_ytdl
-    # print(title)
-    # if any link will do 
-    formats_ = [format for format in r['formats']]
-    #print(formats_)
-    formats = {}
-    for format in formats_:
-        if format.get('ext')=='mp4':
-            formats[f'{format["format_note"]}'] = {'url':format['url'],
-                                                    'fps':format['fps']}
-        else:
-            pass
-    
-    #self.types = [{format['ext'].split(' ')[0]:{'url':format['url']}} for format in formats]
-    types = {}
-    for format in formats_:
-        types[format['ext'].split(' ')[0]] = {'url':format['url']}
+def extract_video_info(video_ids):
+    ydl_opts = {
+        'quiet': True,  # Minimiza os logs
+        'format': 'bestaudio/best',  # Define o melhor formato de áudio
+        'no_warnings': True,  # Evita exibir avisos desnecessários
+        'ignoreerrors': True,  # Ignora erros em vídeos específicos
+        'skip_download': True  # Não baixa os vídeos, apenas extrai informações
+    }
+    result_videos = []
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        for video_id in video_ids:
+            try:
+                video_info = ydl.extract_info(video_id, download=False)
+                result_videos.append(video_info)
+            except Exception as e:
+                print("erro ao capturar informações do video")
+    return result_videos
+
+
+
+def search_music(query,number_search:int=1):
+    print(f"getting info from music '{query}'...")
+    result = search_youtube(query+" music")
+
+    if result and 'entries' in result:
+        video_ids = [entry['id'] for entry in result['entries'][:number_search]]
         
-    types = types
-    formats = formats
-    url_m4a = types['m4a']['url']
-    track = vd_data.get('track','Unknown')
-    channel = vd_data.get('channel',None)
-    artist = vd_data.get('artist',channel)
-    year = vd_data.get('upload_date',None)[:4]
-    album = vd_data.get('album','Unknown')
-    duration = vd_data.get('duration')
-    id_video = vd_data.get('id')
-    title = vd_data.get('title')
-    thumbnail = vd_data.get('thumbnail')
-    # title = re.sub('[^A-Za-z0-9]+', '', title)
-    
-    return {'title':title,'track':track,'duration':duration,'artist':artist,'channel':channel,'year':year,
-            'album':album,'id_video':id_video,'url_m4a':url_m4a,'thumbnail':thumbnail,'ytdl':vd_data}
-    
-
-#info music youtube from a url
-def get_info_url(url):
-    res = ydl.extract_info(url, download=False)
-    return extract_info(res)
+        return extract_video_info(video_ids)
+    else:
+        print("Nenhum resultado encontrado.")
+        return None
 
 
-def get_info_search(query:str,number_results:int=5)->list:
-    list_videos = []
-    videos = ydl.extract_info(f"ytsearch{number_results}:{query}", download=False)['entries']
-    for video in videos:
-        list_videos.append(extract_info(video))
-    return list_videos
+
+
+
