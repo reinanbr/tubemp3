@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "tubemp3"
+version = "0.3"
+description = "lib for getting info music"
+authors = ["ReinanBr"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+yt-dlp = "^2024.10.7"
+requests = "^2.32.3"
+twine = "^5.1.1"
+setuptools = "^75.2.0"
+tqdm = "^4.66.5"
+mutagen = "^1.47.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

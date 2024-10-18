@@ -40,23 +40,37 @@ pip3 install tubemp3 -U
 ## Examples:
 
 
-
-### coding
-
-#### with query
-
+music info
 ```py
 from tubemp3.api import search_music
 
-video_list = search_music("the landing")
-i = 0
-for video_info in video_list:
-    print(f"n[{i}]")
-    for key,value in video_info.items():
-        print(f"{key}: {value}")
-    i+=1
-
+query = "like a player wolverine deadpool chor"
+music = search_music(query)[0]
 ```
+
+api Deizer
+```
+from tubemp3.api_deizer import get_info_music
+
+
+music1 = get_info_music('the landing first man')
+
+for key, value in music1.items():
+    print(f"{key}: {value}"
+```
+
+Download
+```py
+from tubemp3.api import search_music                                                                        
+from tubemp3.file import download                                                                           
+
+query = "like a player wolverine deadpool chor"
+
+music = search_music(query)[0]
+download(music)
+```
+
+
 <hr>
 <br>
 <br>
