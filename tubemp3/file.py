@@ -6,10 +6,7 @@ from tubemp3.metadata import save_metadata
 import os
 
 
-dir_cache = './cache'
-if not os.path.isdir(dir_cache):
-    os.mkdir(dir_cache)
-
+dir_cache = '/tmp'
 
 def download_file(url, file_name):
     response = requests.get(url, stream=True)
@@ -38,7 +35,7 @@ def download_thumbnail(music):
 
 
 def convert_webm_to_mp3(input_file, output_file):
-    command = ['ffmpeg', '-i', input_file, '-vn', '-ab', '256k', '-ar', '44100', '-y', output_file]
+    command = ['ffmpeg',"-hide_banner", '-i', input_file, '-vn', '-ab', '256k', '-ar', '44100', '-y', output_file]
     subprocess.run(command, check=True)
 
 
@@ -60,14 +57,14 @@ def download_webm(music):
 
 
 
-def download(music):
+def download(music,path=None):
     file_webm = download_webm(music)
     file_thumb = download_thumbnail(music)
-    file_mp3 = music['query'] +'.mp3'
+    file_mp3 = music['query'] +'.mp3' if not path else path
     print(f"converting {file_webm} to {file_mp3}...")
     convert_webm_to_mp3(file_webm,file_mp3)
     save_metadata(file_path=file_mp3,
-                  title=music['track'],
+                  title=music.get('track','title'),
                   artist=music['artist'],
                   album=music["album"],
                   year=music['year'],

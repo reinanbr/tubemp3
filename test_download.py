@@ -5,6 +5,6 @@ from tubemp3.file import download
 
 query = "like a player wolverine deadpool chor"
 
-music = search_music(query)[0]
+music = search_music(query)
 
 download(music)
