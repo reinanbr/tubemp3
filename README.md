@@ -33,8 +33,13 @@
 ## Instalation
 
 ```sh
+sudo apt install ffmpeg -y
+```
+
+```sh
 pip3 install tubemp3 -U
 ```
+
 
 
 ## Examples:
