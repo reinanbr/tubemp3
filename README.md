@@ -1,4 +1,3 @@
-
 <br/>
 <p align="center">
   <a href="https://github.com/perseu912">
@@ -107,8 +106,7 @@ for key, value in music.items():
 
 ---
 
-## 📥 Tracking
 
-<img src="https://reysofts.com/evox/api/save_access_lib.php?key_lib=tubemp3_py">
+`<img src="https://reysofts.com/evox/api/save_access_lib.php?key_lib=tubemp3_py">`
 
 <p align='center'></p>
