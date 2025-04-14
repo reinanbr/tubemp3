@@ -5,12 +5,15 @@ import subprocess
 from tubemp3.metadata import save_metadata
 import os
 
-
 dir_cache = '/tmp'
+if not os.path.exists(dir_cache):
+    dir_cache = os.path.expanduser('~') + '/.cache/tubemp3'
+    if not os.path.exists(dir_cache):
+        os.makedirs(dir_cache)
+
 
 def download_file(url: str, file_name: str):
     """Downloads a file from the specified URL and saves it with the given name.
-    
     Args:
         url (str): URL of the file to download.
         file_name (str): Full path where the file will be saved.
@@ -27,10 +30,8 @@ def download_file(url: str, file_name: str):
 
 def download_thumbnail(music):
     """Downloads the album thumbnail associated with the music.
-    
     Args:
         music (dict): Dictionary containing the music metadata.
-    
     Returns:
         str: Path to the downloaded thumbnail file or None in case of an error.
     """
@@ -49,7 +50,6 @@ def download_thumbnail(music):
 
 def convert_webm_to_mp3(input_file: str, output_file: str):
     """Converts an audio file from WebM format to MP3.
-    
     Args:
         input_file (str): Path to the input WebM file.
         output_file (str): Path to the output MP3 file.
@@ -61,10 +61,8 @@ def convert_webm_to_mp3(input_file: str, output_file: str):
 
 def download_webm(music: dict):
     """Downloads an audio file in WebM format.
-    
     Args:
         music (dict): Dictionary containing the music metadata.
-    
     Returns:
         str: Path to the downloaded WebM file.
     """
@@ -83,11 +81,9 @@ def download_webm(music: dict):
 
 def download(music: dict, path: str = None):
     """Downloads a song, converts it to MP3, and adds metadata.
-    
     Args:
         music (dict): Dictionary containing the music metadata.
         path (str, optional): Path where the MP3 file will be saved. If None, uses the song name.
-    
     Returns:
         str: Path to the generated MP3 file.
     """
