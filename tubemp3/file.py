@@ -1,6 +1,7 @@
-from tubemp3.api import search_music, extract_video_info
+from tubemp3.api.extract_video_info import extract_video_info
+from tubemp3.api.models import Music
 from tqdm import tqdm
-import requests 
+import requests
 import subprocess
 from tubemp3.metadata import save_metadata
 import os
@@ -28,15 +29,15 @@ def download_file(url: str, file_name: str):
                 progress_bar.update(len(data))
 
 
-def download_thumbnail(music):
+def download_thumbnail(music: Music):
     """Downloads the album thumbnail associated with the music.
     Args:
-        music (dict): Dictionary containing the music metadata.
+        music (Music): Music object containing the metadata.
     Returns:
         str: Path to the downloaded thumbnail file or None in case of an error.
     """
-    query = music['query']
-    url_thumbnail = music['art_album']
+    query = music.title
+    url_thumbnail = music.art_album
     ext = url_thumbnail.split('.')[-1]
     file_thumbnail = f"{dir_cache}/{query}.{ext}"
     try:
@@ -59,16 +60,16 @@ def convert_webm_to_mp3(input_file: str, output_file: str):
 
 
 
-def download_webm(music: dict):
+def download_webm(music: Music):
     """Downloads an audio file in WebM format.
     Args:
-        music (dict): Dictionary containing the music metadata.
+        music (Music): Music object containing the metadata.
     Returns:
         str: Path to the downloaded WebM file.
     """
-    url = music['url']
-    title = music['query']
-    ext = music['format']
+    url = music.url
+    title = music.query
+    ext = music.format
     file_webm = f"{dir_cache}/{title}_.{ext}"
     print(f"Downloading `{file_webm}`")
     if os.path.isfile(file_webm):
@@ -79,25 +80,25 @@ def download_webm(music: dict):
 
 
 
-def download(music: dict, path: str = None):
+def download(music: Music, path: str = None):
     """Downloads a song, converts it to MP3, and adds metadata.
     Args:
-        music (dict): Dictionary containing the music metadata.
+        music (Music): Music object containing the metadata.
         path (str, optional): Path where the MP3 file will be saved. If None, uses the song name.
     Returns:
         str: Path to the generated MP3 file.
     """
-    is_search = music.get('is_search',None)
-    music = extract_video_info([music['id']]) if is_search else music
+    is_search = music.is_search
+    music = extract_video_info([music.id]) if is_search else music
     file_webm = download_webm(music)
     file_thumb = download_thumbnail(music)
-    file_mp3 = music['title'] + '.mp3' if not path else path
+    file_mp3 = music.title + '.mp3' if not path else path
     print(f"Converting {file_webm} to {file_mp3}...")
     convert_webm_to_mp3(file_webm, file_mp3)
     save_metadata(file_path=file_mp3,
-                  title=music.get('track', 'title'),
-                  artist=music['artist'],
-                  album=music["album"],
-                  year=music['year'],
+                  title=music.track,
+                  artist=music.artist,
+                  album=music.album,
+                  year=music.year,
                   album_art_path=file_thumb)
     return file_mp3

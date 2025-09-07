@@ -1,0 +1,24 @@
+from tubemp3.api.extract_video_info import extract_video_info
+from tubemp3.api.search_music import search_music
+
+
+
+def get_info_music(query):
+    """Searches for music and retrieves detailed information about the first result.
+    
+    Args:
+        query (str): Music search query.
+    
+    Returns:
+        dict: Metadata of the first search result or None if no results.
+    """
+    musics = search_music(query, number_search=1)
+    if musics:
+        if isinstance(musics, list) and len(musics) > 0:
+            video_id = musics[0]['id']
+            return extract_video_info([video_id], query=query)
+        elif isinstance(musics, dict):
+            video_id = musics['id']
+            return extract_video_info([video_id], query=query)
+    print("No music found for the given query.")
+    return None
